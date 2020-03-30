@@ -1,0 +1,34 @@
+@mixin labelShrink {
+  transform: translateY(-1.7rem) translateX(-0.2rem) scale(0.8);
+}
+
+.FormInput {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  &__input {
+    border: none;
+    border-bottom: 1px solid black;
+    margin-bottom: 2em;
+    outline: none;
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+    height: 2.5rem;
+    color: #808080;
+    padding-left: 2px;
+    &:focus + .FormInput__label {
+      @include labelShrink;
+    }
+  }
+  &__label {
+    transition: transform 0.2s;
+    color: #999;
+    font-weight: 100;
+    font-size: 14px;
+    position: absolute;
+    top: 0.6rem;
+    &.shrink {
+      @include labelShrink;
+    }
+  }
+}

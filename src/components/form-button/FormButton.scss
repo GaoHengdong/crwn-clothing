@@ -1,0 +1,13 @@
+.FormButton {
+  padding: 1rem 4rem;
+  background-color: black;
+  border: none;
+  color: white;
+  letter-spacing: 0.2rem;
+  cursor: pointer;
+  &:hover {
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+  }
+}
