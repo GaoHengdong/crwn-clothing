@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import FormInput from "../form-input/FormInput";
 import FormButton from "../form-button/FormButton";
+import { signInWithGoogle } from "../../firebase/firebase.util";
 import "./SignInForm.scss";
 
 export default class SignInForm extends Component {
@@ -14,8 +15,6 @@ export default class SignInForm extends Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
   handleFormChange(e) {
-    console.log(e.target.name);
-    console.log(e.target.value);
     this.setState({ [e.target.name]: e.target.value });
   }
   handleFormSubmit(e) {
@@ -49,7 +48,8 @@ export default class SignInForm extends Component {
             label="密码"
             required
           />
-          <FormButton type="submit" />
+          <FormButton type="submit">登陆</FormButton>
+          <FormButton onClick={signInWithGoogle}>用google登陆</FormButton>
         </form>
       </div>
     );

@@ -11,7 +11,7 @@ export default class FormInput extends Component {
           id={id}
           value={value}
           {...otherprops}
-          autocomplete="off"
+          autoComplete="off"
         />
         <label
           className={`FormInput__label ${value === "" ? "" : "shrink"}`}
