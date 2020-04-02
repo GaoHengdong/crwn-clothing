@@ -48,8 +48,12 @@ export default class SignInForm extends Component {
             label="密码"
             required
           />
-          <FormButton type="submit">登陆</FormButton>
-          <FormButton onClick={signInWithGoogle}>用google登陆</FormButton>
+          <div className="SignInForm__btn-container">
+            <FormButton type="submit">登录</FormButton>
+            <FormButton className="google-btn" onClick={signInWithGoogle}>
+              用google登录
+            </FormButton>
+          </div>
         </form>
       </div>
     );

@@ -3,9 +3,9 @@ import "./FormButton.scss";
 
 export default class FormButton extends Component {
   render() {
-    const { children, ...otherprops } = this.props;
+    const { children, className, ...otherprops } = this.props;
     return (
-      <button className="FormButton" {...otherprops}>
+      <button className={`FormButton ${className}`} {...otherprops}>
         {children}
       </button>
     );
