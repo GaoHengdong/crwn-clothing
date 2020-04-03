@@ -1,5 +1,11 @@
+@import "../../helpers/variables.scss";
 .SignIn {
   padding: 0 2.5rem;
   display: flex;
   justify-content: center;
+  @include md {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }

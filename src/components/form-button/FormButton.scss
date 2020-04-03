@@ -1,11 +1,12 @@
 $google-blue: #4285f4;
 .FormButton {
-  padding: 1rem 4rem;
+  padding: 1rem 3.3rem;
   background-color: black;
   border: 1px solid transparent;
   color: white;
   letter-spacing: 0.2rem;
   cursor: pointer;
+  margin-bottom: 1rem;
   &:hover {
     background-color: white;
     border: 1px solid black;

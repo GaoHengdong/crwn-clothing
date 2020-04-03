@@ -1,7 +1,12 @@
+@import "../../helpers/variables.scss";
 .SignInForm {
-  width: 26%;
+  width: 30%;
   padding: 1rem 0;
   margin-right: 4rem;
+  @include md {
+    width: 90%;
+    margin-right: 0;
+  }
 
   &__title {
     margin: 0;
@@ -24,5 +29,6 @@
   &__btn-container {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
 }

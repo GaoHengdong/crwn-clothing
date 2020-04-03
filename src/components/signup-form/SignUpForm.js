@@ -19,12 +19,13 @@ export default class SignUpForm extends Component {
       [e.target.name]: e.target.value
     });
   }
+
   render() {
     return (
       <div className="SignUpForm">
         <h2 className="SignUpForm__title">没有账号</h2>
         <div className="SignUpForm__subtitle">请用邮箱和密码注册</div>
-        <form className="SignUpForm__form">
+        <form className="SignUpForm__form" onSubmit={this.handleFormSubmit}>
           <FormInput
             type="username"
             name="username"
@@ -53,7 +54,7 @@ export default class SignUpForm extends Component {
             required
           />
           <FormInput
-            type="confirm_password"
+            type="password"
             name="confirm_password"
             id="SignUpForm__confirm_password"
             value={this.state.confirm_password}

@@ -1,7 +1,10 @@
+@import "../../helpers/variables.scss";
 .SignUpForm {
-  width: 26%;
+  width: 30%;
   padding: 1rem 0;
-
+  @include md {
+    width: 90%;
+  }
   &__title {
     margin: 0;
     margin-bottom: 1rem;
