@@ -26,7 +26,12 @@ provider.setCustomParameters({ promt: "select_account" });
 export const signInWithGoogle = () => {
   firebase.auth().signInWithPopup(provider);
 };
-
+/**
+ *
+ * @param {object} userAuth 用户授权信息
+ * @param {object} additionalData 额外的数据
+ * 在数据库录入用户信息
+ */
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   //如果没有登录的话直接返回
   if (!userAuth) return;

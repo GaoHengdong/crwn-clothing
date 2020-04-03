@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import FormInput from "../form-input/FormInput";
 import FormButton from "../form-button/FormButton";
+import { auth, createUserProfileDocument } from "../../firebase/firebase.util";
 import "./SignUpForm.scss";
 
 export default class SignUpForm extends Component {
@@ -13,13 +14,36 @@ export default class SignUpForm extends Component {
       confirm_password: ""
     };
     this.handleFormChange = this.handleFormChange.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
   handleFormChange(e) {
     this.setState({
       [e.target.name]: e.target.value
     });
   }
-
+  async handleFormSubmit(e) {
+    e.preventDefault();
+    //检查密码
+    const { password, confirm_password, username, email } = this.state;
+    if (password !== confirm_password) {
+      alert("您输入的密码不一致，请重新输入！");
+    }
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      await createUserProfileDocument(user, { username });
+      this.setState({
+        username: "",
+        email: "",
+        password: "",
+        confirm_password: ""
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
   render() {
     return (
       <div className="SignUpForm">
