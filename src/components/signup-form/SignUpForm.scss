@@ -1,7 +1,6 @@
-.SignInForm {
+.SignUpForm {
   width: 20%;
   padding: 1rem 0;
-  margin-right: 4rem;
 
   &__title {
     margin: 0;
@@ -17,12 +16,5 @@
     letter-spacing: 2px;
     font-size: 15px;
     margin-bottom: 4rem;
-  }
-  &__form {
-    margin-top: 2.5rem;
-  }
-  &__btn-container {
-    display: flex;
-    justify-content: space-between;
   }
 }

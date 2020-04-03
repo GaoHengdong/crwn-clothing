@@ -5,7 +5,7 @@ import Homepage from "./pages/homepage/Homepage.js";
 import Shop from "./pages/shop/Shop";
 import Header from "./components/header/Header";
 import SignIn from "./pages/signin/SignIn";
-import { auth } from "./firebase/firebase.util";
+import { auth, createUserProfileDocument } from "./firebase/firebase.util";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -13,9 +13,22 @@ class App extends React.Component {
   }
   unsubscribeFromAuth = null;
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      console.log(user);
-      this.setState({ user: user });
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      // console.log(user);
+      // this.setState({ user: user });
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+
+        //类似于onstatechange 当数据库数据改变时候，
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            user: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          });
+        });
+      }
     });
   }
   componentWillUnmount() {

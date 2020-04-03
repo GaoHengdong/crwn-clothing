@@ -16,12 +16,39 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
+
 var provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ promt: "select_account" });
+
 export const signInWithGoogle = () => {
-  console.log(12);
   firebase.auth().signInWithPopup(provider);
+};
+
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  //如果没有登录的话直接返回
+  if (!userAuth) return;
+  //把google账号的uid作为id
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+  const snapShot = userRef.get();
+
+  if (!snapShot.exists) {
+    const { displayName, email } = userAuth;
+    const creatAt = new Date();
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        creatAt,
+        ...additionalData
+      });
+    } catch (e) {
+      console.log("create user profile failed:" + e.message);
+    }
+  }
+
+  return userRef;
 };
 export default firebase;
