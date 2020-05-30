@@ -13,22 +13,22 @@ class App extends React.Component {
   }
   unsubscribeFromAuth = null;
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
 
         //类似于onstatechange 当数据库数据改变时候，
-        userRef.onSnapshot(snapShot => {
+        userRef.onSnapshot((snapShot) => {
           this.setState({
             user: {
               id: snapShot.id,
-              ...snapShot.data()
-            }
+              ...snapShot.data(),
+            },
           });
         });
       }
       this.setState({
-        user: userAuth
+        user: userAuth,
       });
     });
   }
@@ -38,7 +38,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Header user={this.state.user} />
+        <Header />
         <Switch>
           <Route exact path="/" render={() => <Homepage />} />
           <Route exact path="/shop" render={() => <Shop />} />

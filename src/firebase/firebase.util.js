@@ -12,9 +12,10 @@ var firebaseConfig = {
   projectId: "crwn-clothing-1f36f",
   storageBucket: "crwn-clothing-1f36f.appspot.com",
   messagingSenderId: "346632522199",
-  appId: "1:346632522199:web:551b630b83c80b5ad92392"
+  appId: "1:346632522199:web:551b630b83c80b5ad92392",
 };
 // Initialize Firebase
+//都是谷歌的代码，不用管
 firebase.initializeApp(firebaseConfig);
 
 export const auth = firebase.auth();
@@ -26,6 +27,7 @@ provider.setCustomParameters({ promt: "select_account" });
 export const signInWithGoogle = () => {
   firebase.auth().signInWithPopup(provider);
 };
+
 /**
  *
  * @param {object} userAuth 用户授权信息
@@ -47,7 +49,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         displayName,
         email,
         creatAt,
-        ...additionalData
+        ...additionalData,
       });
     } catch (e) {
       console.log("create user profile failed:" + e.message);

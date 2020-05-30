@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import { auth } from "../../firebase/firebase.util";
 import "./Header.scss";
 
-export default class Header extends Component {
+class Header extends Component {
   render() {
-    const { user } = this.props;
+    const { currentUser } = this.props;
     return (
       <header className="Header">
         <Link className="Header__logo" to="/">
@@ -20,7 +21,7 @@ export default class Header extends Component {
           <Link to="/shop" className="Header__nav-item">
             联系我们
           </Link>
-          {user ? (
+          {currentUser ? (
             <span className="Header__nav-item" onClick={() => auth.signOut()}>
               登出
             </span>
@@ -34,3 +35,8 @@ export default class Header extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
+export default connect(mapStateToProps)(Header);
