@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import CartIcon from "../cart-icon/CartIcon";
+import CartDropDown from "../cart-dropdown/CartDropdown";
 import { auth } from "../../firebase/firebase.util";
 import "./Header.scss";
 
 class Header extends Component {
   render() {
-    const { currentUser } = this.props;
+    const { currentUser, hidden } = this.props;
     return (
       <header className="Header">
         <Link className="Header__logo" to="/">
@@ -30,13 +32,16 @@ class Header extends Component {
               登录
             </Link>
           )}
+          <CartIcon className="Header__nav-item" />
         </nav>
+        {hidden || <CartDropDown />}
       </header>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+  currentUser,
+  hidden,
 });
 export default connect(mapStateToProps)(Header);

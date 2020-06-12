@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import "./FormButton.scss";
+import "./CustomButton.scss";
 
-export default class FormButton extends Component {
+export default class CustomButton extends Component {
   render() {
     const { children, className, ...otherprops } = this.props;
     return (
-      <button className={`FormButton ${className}`} {...otherprops}>
+      <button className={`CustomButton ${className}`} {...otherprops}>
         {children}
       </button>
     );

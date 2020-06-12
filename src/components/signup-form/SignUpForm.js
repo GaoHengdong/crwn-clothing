@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import FormInput from "../form-input/FormInput";
-import FormButton from "../form-button/FormButton";
+import CustomButton from "../custom-button/CustomButton";
 import { auth, createUserProfileDocument } from "../../firebase/firebase.util";
 import "./SignUpForm.scss";
 
@@ -11,14 +11,14 @@ export default class SignUpForm extends Component {
       username: "",
       email: "",
       password: "",
-      confirm_password: ""
+      confirm_password: "",
     };
     this.handleFormChange = this.handleFormChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
   handleFormChange(e) {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   }
   async handleFormSubmit(e) {
@@ -38,7 +38,7 @@ export default class SignUpForm extends Component {
         username: "",
         email: "",
         password: "",
-        confirm_password: ""
+        confirm_password: "",
       });
     } catch (e) {
       console.log(e);
@@ -86,7 +86,7 @@ export default class SignUpForm extends Component {
             label="确认密码"
             required
           />
-          <FormButton type="submit">注册</FormButton>
+          <CustomButton type="submit">注册</CustomButton>
         </form>
       </div>
     );

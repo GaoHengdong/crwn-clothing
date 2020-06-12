@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import FormInput from "../form-input/FormInput";
-import FormButton from "../form-button/FormButton";
+import CustomButton from "../custom-button/CustomButton";
 import { auth, signInWithGoogle } from "../../firebase/firebase.util";
 import "./SignInForm.scss";
 
@@ -9,7 +9,7 @@ export default class SignInForm extends Component {
     super(props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
     };
     this.handleFormChange = this.handleFormChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -25,7 +25,7 @@ export default class SignInForm extends Component {
       console.log(rs);
       this.setState({
         email: "",
-        password: ""
+        password: "",
       });
     } catch (e) {
       console.log(e);
@@ -56,10 +56,10 @@ export default class SignInForm extends Component {
             required
           />
           <div className="SignInForm__btn-container">
-            <FormButton type="submit">登录</FormButton>
-            <FormButton className="google-btn" onClick={signInWithGoogle}>
+            <CustomButton type="submit">登录</CustomButton>
+            <CustomButton className="google-btn" onClick={signInWithGoogle}>
               用google登录
-            </FormButton>
+            </CustomButton>
           </div>
         </form>
       </div>
