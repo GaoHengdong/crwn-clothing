@@ -15,7 +15,7 @@ export default class CollectionItem extends Component {
           <div className="CollectionItem__name">{name}</div>
           <div className="CollectionItem__price">{price}</div>
         </div>
-        <CustomButton />
+        <CustomButton className="inverted">加入购物车</CustomButton>
       </div>
     );
   }
