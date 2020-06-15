@@ -9,8 +9,8 @@ export default class CollectionPreview extends Component {
       <div className="CollectionPreview">
         <div className="h2 CollectionPreview__title">{title}</div>
         <div className="CollectionPreview__items-container">
-          {items.slice(0, 4).map(({ id, ...otherprops }) => (
-            <CollectionItem key={id} {...otherprops} />
+          {items.slice(0, 4).map((item) => (
+            <CollectionItem key={item.id} item={item} />
           ))}
         </div>
       </div>
