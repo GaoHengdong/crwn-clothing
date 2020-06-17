@@ -5,15 +5,26 @@ import "./CartDropdown.scss";
 import { connect } from "react-redux";
 import { selectCartItems } from "../../redux/cart/cart.selector";
 import { createStructuredSelector } from "reselect";
+import { withRouter } from "react-router-dom";
 
-const CartDropDown = ({ cartItems }) => (
+const CartDropDown = ({ cartItems, history }) => (
   <div className="CartDropdown">
     <div className="CartDropdown__item">
-      {cartItems.map((cartItem) => (
-        <CartItem {...cartItem} key={cartItem.id} />
-      ))}
+      {console.log(cartItems)}
+      {cartItems.length ? (
+        cartItems.map((cartItem) => (
+          <CartItem {...cartItem} key={cartItem.id} />
+        ))
+      ) : (
+        <p className="CartDropdown__prompt">购物车是空的</p>
+      )}
     </div>
-    <CustomButton className="CartDropdown__button">去结算</CustomButton>
+    <CustomButton
+      className="CartDropdown__button"
+      onClick={() => history.push("/checkout")}
+    >
+      去结算
+    </CustomButton>
   </div>
 );
 
@@ -21,4 +32,4 @@ const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
 });
 
-export default connect(mapStateToProps)(CartDropDown);
+export default withRouter(connect(mapStateToProps)(CartDropDown));
