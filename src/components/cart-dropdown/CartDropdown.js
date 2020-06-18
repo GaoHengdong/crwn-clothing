@@ -6,8 +6,9 @@ import { connect } from "react-redux";
 import { selectCartItems } from "../../redux/cart/cart.selector";
 import { createStructuredSelector } from "reselect";
 import { withRouter } from "react-router-dom";
+import { toggleCartHidden } from "../../redux/cart/cart.action";
 
-const CartDropDown = ({ cartItems, history }) => (
+const CartDropDown = ({ cartItems, history, dispatch }) => (
   <div className="CartDropdown">
     <div className="CartDropdown__item">
       {console.log(cartItems)}
@@ -21,7 +22,10 @@ const CartDropDown = ({ cartItems, history }) => (
     </div>
     <CustomButton
       className="CartDropdown__button"
-      onClick={() => history.push("/checkout")}
+      onClick={() => {
+        history.push("/checkout");
+        dispatch(toggleCartHidden());
+      }}
     >
       去结算
     </CustomButton>

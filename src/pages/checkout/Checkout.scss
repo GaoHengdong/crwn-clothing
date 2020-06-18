@@ -1,0 +1,22 @@
+.Checkout {
+  width: 50%;
+  margin: 0 auto;
+  &__header {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    margin-bottom: 1rem;
+    padding: 2rem 0;
+    color: #666;
+    border-bottom: 1px solid #aaa;
+    justify-content: space-between;
+  }
+  &__header-item {
+  }
+  &__total {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 1.5rem;
+    color: #555;
+  }
+}
