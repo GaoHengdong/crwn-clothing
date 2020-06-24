@@ -1,6 +1,7 @@
 .Checkout {
   width: 50%;
   margin: 0 auto;
+  margin-bottom: 4rem;
   &__header {
     display: flex;
     list-style: none;
@@ -11,8 +12,7 @@
     border-bottom: 1px solid #aaa;
     justify-content: space-between;
   }
-  &__header-item {
-  }
+
   &__total {
     display: flex;
     justify-content: flex-end;

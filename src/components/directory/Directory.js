@@ -5,6 +5,7 @@ import "./Directory.scss";
 import { connect } from "react-redux";
 import { selectDirectorySections } from "../../redux/directory/directory.selector";
 import { createStructuredSelector } from "reselect";
+// import { Link } from "react-router-dom";
 
 const Directory = ({ sections }) => (
   <div className="Directory">
