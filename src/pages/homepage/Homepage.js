@@ -1,14 +1,21 @@
-import React, { Component } from "react";
-import "./Homepage.scss";
+import React from "react";
 import "../../components/directory/Directory";
 import Directory from "../../components/directory/Directory";
+import styled from "styled-components";
+import { screen } from "../../helpers/variables";
 
-export default class Homepage extends Component {
-  render() {
-    return (
-      <div className="Homepage">
-        <Directory />
-      </div>
-    );
-  }
-}
+const Homepage = () => {
+  const Homepage = styled.div`
+    padding: 20px 140px;
+    ${screen("sm")(`
+          padding: 20px 20px;
+    `)}
+  `;
+
+  return (
+    <Homepage>
+      <Directory />
+    </Homepage>
+  );
+};
+export default Homepage;
