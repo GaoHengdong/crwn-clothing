@@ -4,16 +4,20 @@ import CollectionItem from "../../components/collection-item/CollectionItem";
 import { connect } from "react-redux";
 import "./Collection.scss";
 
-const Collection = ({ collection }) => (
-  <div className="Collection">
-    <div className="Collection__title">{collection.title}</div>
-    <div className="Collection__items-container">
-      {collection.items.map((item) => (
-        <CollectionItem key={item.id} item={item} />
-      ))}
+const Collection = ({ collection }) => {
+  const { title, items } = collection;
+
+  return (
+    <div className="Collection">
+      <div className="Collection__title">{title}</div>
+      <div className="Collection__items-container">
+        {items.map((item) => (
+          <CollectionItem key={item.id} item={item} />
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const mapStateToProps = (state, props) => ({
   collection: selectCollectionById(props.match.params.collectionId)(state),
