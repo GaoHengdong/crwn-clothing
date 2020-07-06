@@ -14,20 +14,19 @@ import { createStructuredSelector } from "reselect";
 class App extends React.Component {
   unsubscribeFromAuth = null;
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
-
-        //类似于onstatechange 当数据库数据改变时候，
-        userRef.onSnapshot((snapShot) => {
-          this.props.setCurrentUser({
-            id: snapShot.id,
-            ...snapShot.data(),
-          });
-        });
-      }
-      this.props.setCurrentUser(userAuth);
-    });
+    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+    //   if (userAuth) {
+    //     const userRef = await createUserProfileDocument(userAuth);
+    //     //类似于onstatechange 当数据库数据改变时候，
+    //     userRef.onSnapshot((snapShot) => {
+    //       this.props.setCurrentUser({
+    //         id: snapShot.id,
+    //         ...snapShot.data(),
+    //       });
+    //     });
+    //   }
+    //   this.props.setCurrentUser(userAuth);
+    // });
   }
   componentWillUnmount() {
     this.unsubscribeFromAuth();
