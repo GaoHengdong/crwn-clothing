@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import FormInput from "../form-input/FormInput";
 import CustomButton from "../custom-button/CustomButton";
-import { auth, signInWithGoogle } from "../../firebase/firebase.util";
+import { connect } from "react-redux";
+import {
+  googleSignInStart,
+  emailSignInStart,
+} from "../../redux/user/user.action";
 import "./SignInForm.scss";
 
-export default class SignInForm extends Component {
+class SignInForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,18 +24,11 @@ export default class SignInForm extends Component {
   async handleFormSubmit(e) {
     e.preventDefault();
     const { email, password } = this.state;
-    try {
-      const rs = await auth.signInWithEmailAndPassword(email, password);
-      console.log(rs);
-      this.setState({
-        email: "",
-        password: "",
-      });
-    } catch (e) {
-      console.log(e);
-    }
+    const { emailSignInStart } = this.props;
+    emailSignInStart(email, password);
   }
   render() {
+    const { googleSignInStart } = this.props;
     return (
       <div className="SignInForm">
         <h2 className="SignInForm__title">已经有账号</h2>
@@ -57,7 +54,11 @@ export default class SignInForm extends Component {
           />
           <div className="SignInForm__btn-container">
             <CustomButton type="submit">登录</CustomButton>
-            <CustomButton className="google-btn" onClick={signInWithGoogle}>
+            <CustomButton
+              type="button"
+              className="google-btn"
+              onClick={googleSignInStart}
+            >
               用google登录
             </CustomButton>
           </div>
@@ -66,3 +67,11 @@ export default class SignInForm extends Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  googleSignInStart: () => dispatch(googleSignInStart()),
+  emailSignInStart: (email, password) =>
+    dispatch(emailSignInStart(email, password)),
+});
+
+export default connect(null, mapDispatchToProps)(SignInForm);

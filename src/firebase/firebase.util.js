@@ -21,11 +21,11 @@ firebase.initializeApp(firebaseConfig);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
-var provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ promt: "select_account" });
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+googleProvider.setCustomParameters({ promt: "select_account" });
 
 export const signInWithGoogle = () => {
-  firebase.auth().signInWithPopup(provider);
+  firebase.auth().signInWithPopup(googleProvider);
 };
 
 /**
