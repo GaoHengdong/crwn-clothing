@@ -25,7 +25,7 @@ class SignInForm extends Component {
     e.preventDefault();
     const { email, password } = this.state;
     const { emailSignInStart } = this.props;
-    emailSignInStart(email, password);
+    emailSignInStart({ email, password });
   }
   render() {
     const { googleSignInStart } = this.props;
