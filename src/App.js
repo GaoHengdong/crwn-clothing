@@ -7,29 +7,9 @@ import Header from "./components/header/Header";
 import SignIn from "./pages/signin/SignIn";
 import Checkout from "./pages/checkout/Checkout";
 import { connect } from "react-redux";
-import { setCurrentUser } from "./redux/user/user.action";
 import { selectCurrentUser } from "./redux/user/user.selector";
 import { createStructuredSelector } from "reselect";
 class App extends React.Component {
-  unsubscribeFromAuth = null;
-  componentDidMount() {
-    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-    //   if (userAuth) {
-    //     const userRef = await createUserProfileDocument(userAuth);
-    //     //类似于onstatechange 当数据库数据改变时候，
-    //     userRef.onSnapshot((snapShot) => {
-    //       this.props.setCurrentUser({
-    //         id: snapShot.id,
-    //         ...snapShot.data(),
-    //       });
-    //     });
-    //   }
-    //   this.props.setCurrentUser(userAuth);
-    // });
-  }
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-  }
   render() {
     return (
       <div className="App">
@@ -55,8 +35,4 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
