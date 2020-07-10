@@ -37,7 +37,7 @@ export function* signInWithEmail({ payload: { email, password } }) {
       emailSignInSuccess({ id: userSnapshot.id, ...userSnapshot.data() })
     );
   } catch (error) {
-    put(emailSignInFailure);
+    put(emailSignInFailure(error));
   }
 }
 
@@ -49,6 +49,6 @@ export function* onEmailSignInStart() {
   yield takeLatest(userActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
 }
 
-export function* userSaga() {
+export function* userSagas() {
   yield all([call(onGoogleSignInStart), call(onEmailSignInStart)]);
 }
