@@ -1,0 +1,255 @@
+{
+    "root": {
+        "data": {
+            "id": "c4cuzmpvl0o0",
+            "created": 1595391224844,
+            "text": "firestore"
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "c4cuzwozu9c0",
+                    "created": 1595391246558,
+                    "text": "auth"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "c4cv01fldlc0",
+                            "created": 1595391256874,
+                            "text": "登录授权模块"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "c4cv07tlz1c0",
+                            "created": 1595391270782,
+                            "text": "用google登录"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "c4cv0eut1bs0",
+                            "created": 1595391286092,
+                            "text": "用email password登录"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "c4cv0ksh8oo0",
+                            "created": 1595391299012,
+                            "text": "通过登录可以获得userAuth"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "c4cv0tatrio0",
+                                    "created": 1595391317535,
+                                    "text": "通过监听获得，onAuthStateChanged"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "c4cv1p0m9y80",
+                                    "created": 1595391386575,
+                                    "text": "是一系列的登录信息，包括："
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "c4cv1tmnol40",
+                                            "created": 1595391396616,
+                                            "text": "displayname"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "c4cv1wtr1wg0",
+                                            "created": 1595391403574,
+                                            "text": "email"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "c4cv1ydng200",
+                                            "created": 1595391406954,
+                                            "text": "uid"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "c4cuzyvrtgo0",
+                    "created": 1595391251322,
+                    "text": "firestore"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "c4cv266j0w00",
+                            "created": 1595391423938,
+                            "text": "数据库模块"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "c4cv29qnta00",
+                            "created": 1595391431686,
+                            "text": "userRef"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "c4cv2lle1eo0",
+                                    "created": 1595391457488,
+                                    "text": "通过firestore.doc(path)获得"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "c4cv2vh3e0o0",
+                                    "created": 1595391478996,
+                                    "text": "需要userAuth提供的uid"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "c4cv31odurc0",
+                                    "created": 1595391492498,
+                                    "text": "意味着登录成功，可以访问数据库"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "c4cv3cn4pv40",
+                                    "created": 1595391516367,
+                                    "text": "包括："
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "c4cv3ebjvag0",
+                                            "created": 1595391520020,
+                                            "text": "collectionRef"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "c4cv3hvuxjc0",
+                                            "created": 1595391527778,
+                                            "text": "documentRef"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "c4cv3s7yepk0",
+                            "created": 1595391550278,
+                            "text": "snapshot"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "c4cv3ty1tag0",
+                                    "created": 1595391554032,
+                                    "text": "通过userRef.get()获得"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "c4cv3yod3oo0",
+                                    "created": 1595391564330,
+                                    "text": "是数据库存储的数据"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "c4cv4ddxhz40",
+                            "created": 1595391596351,
+                            "text": "collection"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "c4cv4f5anhk0",
+                                    "created": 1595391600183,
+                                    "text": "有一个key，可以自己取名字"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "c4cv4lrmcqo0",
+                                    "created": 1595391614593,
+                                    "text": "存有许多documents，这些documents没有强制格式要求"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "c4cv4jt4se80",
+                            "created": 1595391610331,
+                            "text": "document"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "c4cv59lstm00",
+                                    "created": 1595391666484,
+                                    "text": "有一个key（或者id），一般由系统随机"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "c4cv5jzcyd40",
+                                    "created": 1595391689072,
+                                    "text": "value可以是任何类型的字段"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "c4cv5y33kkg0",
+                                    "created": 1595391719773,
+                                    "text": "可以包含collection"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "template": "right",
+    "theme": "fresh-blue",
+    "version": "1.4.43"
+}

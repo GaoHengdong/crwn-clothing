@@ -9,7 +9,12 @@ import {
   getCurrentUser,
 } from "../../firebase/firebase.util";
 
-import { signInSuccess, signInFailure } from "./user.action";
+import {
+  signInSuccess,
+  signInFailure,
+  signOutFailure,
+  signOutSuccess,
+} from "./user.action";
 
 export function* getSnapshopFromUserAuth(userAuth) {
   try {
@@ -32,6 +37,7 @@ export function* signInWithGoogle() {
 
 export function* signInWithEmail({ payload: { email, password } }) {
   try {
+    console.log(1);
     const { user } = yield auth.signInWithEmailAndPassword(email, password);
     yield getSnapshopFromUserAuth(user);
   } catch (error) {
@@ -40,13 +46,21 @@ export function* signInWithEmail({ payload: { email, password } }) {
 }
 
 export function* isUserAuthenticated() {
-  console.log(1);
   try {
     const userAuth = yield getCurrentUser();
     if (!userAuth) return;
     yield getSnapshopFromUserAuth(userAuth);
   } catch (error) {
     yield put(signInFailure(error));
+  }
+}
+
+export function* signOut() {
+  try {
+    yield auth.signOut();
+    yield put(signOutSuccess());
+  } catch (error) {
+    yield put(signOutFailure(error));
   }
 }
 
@@ -62,10 +76,15 @@ export function* onCheckUserSession() {
   yield takeLatest(userActionTypes.CHECK_USER_SESSION, isUserAuthenticated);
 }
 
+export function* onSignOutStart() {
+  yield takeLatest(userActionTypes.SIGN_OUT_START, signOut);
+}
+
 export function* userSagas() {
   yield all([
     call(onGoogleSignInStart),
     call(onEmailSignInStart),
     call(onCheckUserSession),
+    call(onSignOutStart),
   ]);
 }
