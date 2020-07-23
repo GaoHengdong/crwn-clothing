@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import FormInput from "../form-input/FormInput";
 import CustomButton from "../custom-button/CustomButton";
-import { auth, createUserProfileDocument } from "../../firebase/firebase.util";
+import { signUpStart } from "../../redux/user/user.action";
+import { connect } from "react-redux";
 import "./SignUpForm.scss";
 
-export default class SignUpForm extends Component {
+class SignUpForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,24 +26,11 @@ export default class SignUpForm extends Component {
     e.preventDefault();
     //检查密码
     const { password, confirm_password, username, email } = this.state;
+    const { signUpStart } = this.props;
     if (password !== confirm_password) {
       alert("您输入的密码不一致，请重新输入！");
     }
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
-      await createUserProfileDocument(user, { username });
-      this.setState({
-        username: "",
-        email: "",
-        password: "",
-        confirm_password: "",
-      });
-    } catch (e) {
-      console.log(e);
-    }
+    signUpStart({ email, password, displayName: username });
   }
   render() {
     return (
@@ -92,3 +80,9 @@ export default class SignUpForm extends Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  signUpStart: (userCredentials) => dispatch(signUpStart(userCredentials)),
+});
+
+export default connect(null, mapDispatchToProps)(SignUpForm);

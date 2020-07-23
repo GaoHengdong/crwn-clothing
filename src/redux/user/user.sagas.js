@@ -14,11 +14,17 @@ import {
   signInFailure,
   signOutFailure,
   signOutSuccess,
+  signUpFailure,
+  signUpSuccess,
 } from "./user.action";
 
-export function* getSnapshopFromUserAuth(userAuth) {
+export function* getSnapshopFromUserAuth(userAuth, additionalData) {
   try {
-    const userRef = yield call(createUserProfileDocument, userAuth);
+    const userRef = yield call(
+      createUserProfileDocument,
+      userAuth,
+      additionalData
+    );
     const userSnapshot = yield userRef.get();
     yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
   } catch (error) {
@@ -37,7 +43,6 @@ export function* signInWithGoogle() {
 
 export function* signInWithEmail({ payload: { email, password } }) {
   try {
-    console.log(1);
     const { user } = yield auth.signInWithEmailAndPassword(email, password);
     yield getSnapshopFromUserAuth(user);
   } catch (error) {
@@ -63,7 +68,18 @@ export function* signOut() {
     yield put(signOutFailure(error));
   }
 }
+export function* signUp({ payload: { email, password, displayName } }) {
+  try {
+    const { user } = yield auth.createUserWithEmailAndPassword(email, password);
+    yield put(signUpSuccess({ user, additionalData: { displayName } }));
+  } catch (e) {
+    yield put(signUpFailure(e));
+  }
+}
 
+export function* signInOnSignUpSuccess({ payload: { user, additionalData } }) {
+  yield getSnapshopFromUserAuth(user, additionalData);
+}
 export function* onGoogleSignInStart() {
   yield takeLatest(userActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle);
 }
@@ -80,11 +96,21 @@ export function* onSignOutStart() {
   yield takeLatest(userActionTypes.SIGN_OUT_START, signOut);
 }
 
+export function* onSignUpStart() {
+  yield takeLatest(userActionTypes.SIGN_UP_START, signUp);
+}
+
+export function* OnSignUpSuccess() {
+  yield takeLatest(userActionTypes.SIGN_UP_SUCCESS, signInOnSignUpSuccess);
+}
+
 export function* userSagas() {
   yield all([
     call(onGoogleSignInStart),
     call(onEmailSignInStart),
     call(onCheckUserSession),
     call(onSignOutStart),
+    call(onSignUpStart),
+    call(OnSignUpSuccess),
   ]);
 }

@@ -43,7 +43,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
   //把google账号的uid作为id
   const userRef = firestore.doc(`users/${userAuth.uid}`);
-  const snapShot = userRef.get();
+  const snapShot = await userRef.get();
 
   if (!snapShot.exists) {
     const { displayName, email } = userAuth;
@@ -56,7 +56,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         ...additionalData,
       });
     } catch (e) {
-      console.log("create user profile failed:" + e.message);
+      throw new Error("create user profile failed:" + e.message);
     }
   }
 

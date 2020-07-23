@@ -1,21 +1,13 @@
 import React from "react";
 import "../../components/directory/Directory";
 import Directory from "../../components/directory/Directory";
-import styled from "styled-components";
-import { screen } from "../../helpers/variables";
+import { HomepageContainer } from "./HomepageContainer.styled";
 
 const Homepage = () => {
-  const Homepage = styled.div`
-    padding: 20px 140px;
-    ${screen("sm")(`
-          padding: 20px 20px;
-    `)}
-  `;
-
   return (
-    <Homepage>
+    <HomepageContainer>
       <Directory />
-    </Homepage>
+    </HomepageContainer>
   );
 };
 export default Homepage;
